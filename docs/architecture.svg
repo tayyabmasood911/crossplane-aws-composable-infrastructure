@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-3%" y="-3%" width="106%" height="108%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06" />
+    </filter>
+    <linearGradient id="xpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+    <linearGradient id="awsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+    <linearGradient id="k8sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="720" fill="#ffffff" />
+  <rect x="0" y="0" width="1200" height="720" fill="none" stroke="#e2e8f0" stroke-width="2" />
+
+  <!-- Subdued Grid -->
+  <g opacity="0.25">
+    <path d="M0 60 H1200 M0 120 H1200 M0 180 H1200 M0 240 H1200 M0 300 H1200 M0 360 H1200 M0 420 H1200 M0 480 H1200 M0 540 H1200 M0 600 H1200 M0 660 H1200" stroke="#f1f5f9" stroke-width="1" />
+    <path d="M100 0 V720 M200 0 V720 M300 0 V720 M400 0 V720 M500 0 V720 M600 0 V720 M700 0 V720 M800 0 V720 M900 0 V720 M1000 0 V720 M1100 0 V720" stroke="#f1f5f9" stroke-width="1" />
+  </g>
+
+  <!-- Header -->
+  <rect x="40" y="24" width="1120" height="68" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+  <text x="65" y="56" font-size="20" font-weight="700" fill="#0f172a">Crossplane AWS Composable Control Plane Infrastructure</text>
+  <text x="65" y="78" font-size="12" font-weight="500" fill="#64748b">Kubernetes-Native Infrastructure • XRDs &amp; Compositions • Upbound AWS Providers • Self-Service Claims</text>
+
+  <rect x="990" y="42" width="150" height="32" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
+  <circle cx="1005" cy="58" r="5" fill="#7c3aed" />
+  <text x="1018" y="62" font-size="11" font-weight="600" fill="#5b21b6">Control Plane v1.14</text>
+
+  <!-- TIER 1: App Developer Self-Service Layer (Namespaces) -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="112" width="1120" height="154" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6" />
+    <path d="M40 112 h1120 v38 H40 z" fill="#eff6ff" rx="12" />
+    <rect x="40" y="140" width="1120" height="10" fill="#eff6ff" />
+    <line x1="40" y1="150" x2="1160" y2="150" stroke="#bfdbfe" stroke-width="1.2" />
+    <text x="65" y="136" font-size="14" font-weight="700" fill="#1e40af">Tier 1: Developer Self-Service Layer (Namespaced K8s Custom Claims)</text>
+    <rect x="980" y="120" width="160" height="22" rx="4" fill="#ffffff" stroke="#3b82f6" stroke-width="1" />
+    <text x="990" y="135" font-size="10" font-weight="600" fill="#1d4ed8">kubectl apply -f claim.yaml</text>
+  </g>
+
+  <!-- Claim Card 1: Network -->
+  <rect x="65" y="166" width="340" height="84" rx="8" fill="#f8fafc" stroke="#3b82f6" stroke-width="1.2" />
+  <rect x="78" y="178" width="90" height="20" rx="4" fill="url(#k8sGrad)" />
+  <text x="85" y="192" font-size="10" font-weight="700" fill="#ffffff">NetworkClaim</text>
+  <text x="175" y="192" font-size="11" font-weight="700" fill="#0f172a">dev-vpc-production</text>
+  <text x="78" y="214" font-size="10" fill="#475569">spec.cidrBlock: 10.0.0.0/16 • region: us-east-1</text>
+  <text x="78" y="230" font-size="10" fill="#16a34a">status: Ready=True • Synced=True • vpc-0a8b9c</text>
+
+  <!-- Claim Card 2: Database -->
+  <rect x="430" y="166" width="340" height="84" rx="8" fill="#f8fafc" stroke="#3b82f6" stroke-width="1.2" />
+  <rect x="443" y="178" width="110" height="20" rx="4" fill="url(#k8sGrad)" />
+  <text x="450" y="192" font-size="10" font-weight="700" fill="#ffffff">PostgreSQLClaim</text>
+  <text x="560" y="192" font-size="11" font-weight="700" fill="#0f172a">app-pg-db</text>
+  <text x="443" y="214" font-size="10" fill="#475569">spec.storageGB: 50 • engineVersion: 15.4 • class: db.t4g.medium</text>
+  <text x="443" y="230" font-size="10" fill="#7c3aed">Secret exported: app-pg-db-credentials (user/pass/host)</text>
+
+  <!-- Claim Card 3: Storage -->
+  <rect x="795" y="166" width="340" height="84" rx="8" fill="#f8fafc" stroke="#3b82f6" stroke-width="1.2" />
+  <rect x="808" y="178" width="120" height="20" rx="4" fill="url(#k8sGrad)" />
+  <text x="815" y="192" font-size="10" font-weight="700" fill="#ffffff">SecureBucketClaim</text>
+  <text x="935" y="192" font-size="11" font-weight="700" fill="#0f172a">app-assets</text>
+  <text x="808" y="214" font-size="10" fill="#475569">spec.storageClass: STANDARD • publicAccess: Blocked</text>
+  <text x="808" y="230" font-size="10" fill="#16a34a">status: Ready=True • Bucket ARN exported</text>
+
+  <!-- Connector Line T1 to T2 -->
+  <line x1="600" y1="266" x2="600" y2="295" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="4 2" />
+
+  <!-- TIER 2: Crossplane Control Plane Engine (Cluster Scoped) -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="295" width="1120" height="174" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" />
+    <path d="M40 295 h1120 v38 H40 z" fill="#f5f3ff" rx="12" />
+    <rect x="40" y="323" width="1120" height="10" fill="#f5f3ff" />
+    <line x1="40" y1="333" x2="1160" y2="333" stroke="#e9d5ff" stroke-width="1.2" />
+    <text x="65" y="320" font-size="14" font-weight="700" fill="#5b21b6">Tier 2: Crossplane Orchestration Engine (Cluster-Scoped XRDs &amp; Compositions)</text>
+    <rect x="960" y="304" width="180" height="22" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1" />
+    <text x="970" y="319" font-size="10" font-weight="600" fill="#6d28d9">Reconciliation Loop (60s)</text>
+  </g>
+
+  <!-- Sub-block 1: CompositeResourceDefinitions (XRDs) -->
+  <rect x="65" y="348" width="340" height="106" rx="8" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.2" />
+  <text x="80" y="370" font-size="12" font-weight="700" fill="#581c87">XRD OpenAPI Schemas</text>
+  <text x="80" y="390" font-size="10" fill="#475569">• xnetworks.aws.tayyab.dev (v1alpha1)</text>
+  <text x="80" y="406" font-size="10" fill="#475569">• xpostgresqlinstances.aws.tayyab.dev (v1alpha1)</text>
+  <text x="80" y="422" font-size="10" fill="#475569">• xsecurebuckets.aws.tayyab.dev (v1alpha1)</text>
+  <text x="80" y="438" font-size="9" fill="#16a34a">✓ Validates fields before triggering AWS API calls</text>
+
+  <!-- Sub-block 2: Compositions & Patch Sets -->
+  <rect x="430" y="348" width="340" height="106" rx="8" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.2" />
+  <text x="445" y="370" font-size="12" font-weight="700" fill="#581c87">Composition Logic &amp; Transforms</text>
+  <text x="445" y="390" font-size="10" fill="#475569">• PatchSets: standard resource tagging</text>
+  <text x="445" y="406" font-size="10" fill="#475569">• FromCompositeFieldPath &amp; CombineToComposite</text>
+  <text x="445" y="422" font-size="10" fill="#475569">• Connection Secret Keys mapping &amp; masking</text>
+  <text x="445" y="438" font-size="9" fill="#7c3aed">✓ Decouples app intent from cloud implementation</text>
+
+  <!-- Sub-block 3: Upbound AWS Providers -->
+  <rect x="795" y="348" width="340" height="106" rx="8" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.2" />
+  <text x="810" y="370" font-size="12" font-weight="700" fill="#581c87">Upbound Official AWS Provider</text>
+  <text x="810" y="390" font-size="10" fill="#475569">• provider-aws-ec2: Managed VPC, Subnet, RouteTable</text>
+  <text x="810" y="406" font-size="10" fill="#475569">• provider-aws-rds: Instance, SubnetGroup</text>
+  <text x="810" y="422" font-size="10" fill="#475569">• provider-aws-s3: Bucket, ServerSideEncryption</text>
+  <text x="810" y="438" font-size="9" fill="#16a34a">✓ IRSA authentication via OIDC (No IAM keys)</text>
+
+  <!-- Connector Line T2 to T3 -->
+  <line x1="600" y1="469" x2="600" y2="498" stroke="#f97316" stroke-width="2.5" stroke-dasharray="4 2" />
+
+  <!-- TIER 3: AWS Managed Cloud Infrastructure -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="498" width="1120" height="142" rx="12" fill="#ffffff" stroke="#f97316" stroke-width="1.8" />
+    <path d="M40 498 h1120 v38 H40 z" fill="#fff7ed" rx="12" />
+    <rect x="40" y="526" width="1120" height="10" fill="#fff7ed" />
+    <line x1="40" y1="536" x2="1160" y2="536" stroke="#fed7aa" stroke-width="1.2" />
+    <text x="65" y="523" font-size="14" font-weight="700" fill="#9a3412">Tier 3: Provisioned AWS Cloud Infrastructure (State Reconciled)</text>
+    <rect x="990" y="508" width="150" height="22" rx="4" fill="#ffffff" stroke="#ea580c" stroke-width="1" />
+    <text x="1000" y="523" font-size="10" font-weight="600" fill="#c2410c">AWS Native Resources</text>
+  </g>
+
+  <!-- AWS Box 1: VPC -->
+  <rect x="65" y="550" width="340" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+  <text x="80" y="572" font-size="11" font-weight="700" fill="#0f172a">AWS EC2 VPC &amp; Subnets</text>
+  <text x="80" y="590" font-size="10" fill="#475569">VPC ID: vpc-0a8b9c1d2e • Multi-AZ Private Subnets</text>
+  <text x="80" y="606" font-size="10" fill="#16a34a">Internet Gateway + Isolated Route Tables Active</text>
+
+  <!-- AWS Box 2: RDS -->
+  <rect x="430" y="550" width="340" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+  <text x="445" y="572" font-size="11" font-weight="700" fill="#0f172a">AWS RDS PostgreSQL Instance</text>
+  <text x="445" y="590" font-size="10" fill="#475569">Storage Encrypted (KMS) • Automated Backup (7d)</text>
+  <text x="445" y="606" font-size="10" fill="#16a34a">Multi-AZ Failover • Subnet Group Bound</text>
+
+  <!-- AWS Box 3: S3 -->
+  <rect x="795" y="550" width="340" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+  <text x="810" y="572" font-size="11" font-weight="700" fill="#0f172a">AWS S3 Secure Bucket</text>
+  <text x="810" y="590" font-size="10" fill="#475569">AES-256 Server-Side Encryption Enforced</text>
+  <text x="810" y="606" font-size="10" fill="#16a34a">Public Access Block (All 4 settings ON) • Versioning</text>
+
+  <!-- Footer Specs -->
+  <rect x="40" y="656" width="1120" height="46" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />
+  <text x="60" y="684" font-size="12" font-weight="700" fill="#0f172a">Crossplane Architecture Specs:</text>
+  <text x="250" y="684" font-size="12" fill="#475569">Upbound Official AWS Provider</text>
+  <text x="470" y="684" font-size="12" fill="#475569">• 3 Clean XRDs (Network, DB, Storage)</text>
+  <text x="740" y="684" font-size="12" fill="#475569">• Continuous Drift Auto-Correction</text>
+  <text x="980" y="684" font-size="12" font-weight="600" fill="#7c3aed">GitOps Ready</text>
+</svg>

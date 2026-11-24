@@ -1,0 +1,10 @@
+apiVersion: aws.tayyab.dev/v1alpha1
+kind: SecureBucketClaim
+metadata:
+  name: production-assets-bucket
+  namespace: default
+spec:
+  bucketPrefix: "enterprise-assets"
+  region: "us-east-1"
+  storageClass: "STANDARD"
+  versioningEnabled: true

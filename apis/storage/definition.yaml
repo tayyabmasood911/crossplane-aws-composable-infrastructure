@@ -1,0 +1,46 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xsecurebuckets.aws.tayyab.dev
+spec:
+  group: aws.tayyab.dev
+  names:
+    kind: XSecureBucket
+    plural: xsecurebuckets
+  claimNames:
+    kind: SecureBucketClaim
+    plural: securebucketclaims
+  defaultCompositionRef:
+    name: xsecurebuckets.aws.tayyab.dev
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - bucketPrefix
+                - region
+              properties:
+                bucketPrefix:
+                  type: string
+                region:
+                  type: string
+                  default: "us-east-1"
+                storageClass:
+                  type: string
+                  default: "STANDARD"
+                versioningEnabled:
+                  type: boolean
+                  default: true
+            status:
+              type: object
+              properties:
+                arn:
+                  type: string
+                bucketName:
+                  type: string

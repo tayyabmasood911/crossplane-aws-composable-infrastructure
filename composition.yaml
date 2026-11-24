@@ -1,13 +1,42 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: aws-rds-postgresql
+  name: xnetworks.aws.tayyab.dev
+  labels:
+    provider: aws
+    architecture: modular-vpc
 spec:
   compositeTypeRef:
-    apiVersion: database.company.io/v1alpha1
-    kind: XPostgresInstance
-  resources:
-  - name: rds-instance
-    base:
-      apiVersion: database.aws.upbound.io/v1beta1
-      kind: Instance
+    apiVersion: aws.tayyab.dev/v1alpha1
+    kind: XNetwork
+  mode: Pipeline
+  pipeline:
+    - step: patch-and-transform
+      functionRef:
+        name: function-patch-and-transform
+      input:
+        apiVersion: pt.fn.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+          - name: vpc
+            base:
+              apiVersion: ec2.aws.upbound.io/v1beta1
+              kind: VPC
+              spec:
+                forProvider:
+                  cidrBlock: 10.0.0.0/16
+                  enableDnsHostnames: true
+                  enableDnsSupport: true
+                  tags:
+                    ManagedBy: Crossplane
+                    Owner: TayyabMasood
+            patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.cidrBlock
+                toFieldPath: spec.forProvider.cidrBlock
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.region
+                toFieldPath: spec.forProvider.region
+              - type: ToCompositeFieldPath
+                fromFieldPath: status.atProvider.id
+                toFieldPath: status.vpcId

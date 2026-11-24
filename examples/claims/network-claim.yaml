@@ -1,0 +1,9 @@
+apiVersion: aws.tayyab.dev/v1alpha1
+kind: NetworkClaim
+metadata:
+  name: production-vpc-network
+  namespace: default
+spec:
+  cidrBlock: "10.0.0.0/16"
+  region: "us-east-1"
+  enableDnsHostnames: true

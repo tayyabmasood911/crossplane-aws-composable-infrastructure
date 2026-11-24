@@ -1,0 +1,19 @@
+apiVersion: meta.crossplane.io/v1alpha1
+kind: Configuration
+metadata:
+  name: crossplane-aws-composable-infrastructure
+  annotations:
+    meta.crossplane.io/maintainer: "Tayyab Masood <tayyabmasood911@gmail.com>"
+    meta.crossplane.io/source: "github.com/tayyabmasood911/crossplane-aws-composable-infrastructure"
+    meta.crossplane.io/license: "MIT"
+    meta.crossplane.io/description: "Enterprise composable cloud infrastructure control plane using Crossplane and Upbound AWS providers"
+spec:
+  crossplane:
+    version: ">=v1.14.0"
+  dependsOn:
+    - provider: xpkg.upbound.io/upbound/provider-aws-ec2
+      version: ">=v1.1.0"
+    - provider: xpkg.upbound.io/upbound/provider-aws-rds
+      version: ">=v1.1.0"
+    - provider: xpkg.upbound.io/upbound/provider-aws-s3
+      version: ">=v1.1.0"

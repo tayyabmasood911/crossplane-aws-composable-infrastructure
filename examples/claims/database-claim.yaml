@@ -1,0 +1,12 @@
+apiVersion: aws.tayyab.dev/v1alpha1
+kind: PostgreSQLClaim
+metadata:
+  name: production-pg-database
+  namespace: default
+spec:
+  storageGB: 50
+  engineVersion: "15.4"
+  instanceClass: "db.t4g.medium"
+  multiAZ: true
+  writeConnectionSecretToRef:
+    name: production-pg-database-credentials

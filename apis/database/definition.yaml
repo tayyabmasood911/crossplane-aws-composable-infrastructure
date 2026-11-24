@@ -1,0 +1,49 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xpostgresqlinstances.aws.tayyab.dev
+spec:
+  group: aws.tayyab.dev
+  names:
+    kind: XPostgreSQLInstance
+    plural: xpostgresqlinstances
+  claimNames:
+    kind: PostgreSQLClaim
+    plural: postgresqlclaims
+  defaultCompositionRef:
+    name: xpostgresqlinstances.aws.tayyab.dev
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - storageGB
+                - engineVersion
+                - instanceClass
+              properties:
+                storageGB:
+                  type: integer
+                  minimum: 20
+                  maximum: 1000
+                engineVersion:
+                  type: string
+                  default: "15.4"
+                instanceClass:
+                  type: string
+                  default: "db.t4g.medium"
+                multiAZ:
+                  type: boolean
+                  default: true
+            status:
+              type: object
+              properties:
+                endpoint:
+                  type: string
+                port:
+                  type: integer

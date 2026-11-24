@@ -1,0 +1,38 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xnetworks.aws.tayyab.dev
+spec:
+  group: aws.tayyab.dev
+  names:
+    kind: XNetwork
+    plural: xnetworks
+  claimNames:
+    kind: NetworkClaim
+    plural: networkclaims
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - cidrBlock
+                - region
+              properties:
+                cidrBlock:
+                  type: string
+                region:
+                  type: string
+                enableDnsHostnames:
+                  type: boolean
+                  default: true
+            status:
+              type: object
+              properties:
+                vpcId:
+                  type: string

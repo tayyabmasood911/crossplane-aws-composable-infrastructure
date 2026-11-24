@@ -1,0 +1,44 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xpostgresqlinstances.aws.tayyab.dev
+  labels:
+    provider: aws
+    layer: database
+spec:
+  compositeTypeRef:
+    apiVersion: aws.tayyab.dev/v1alpha1
+    kind: XPostgreSQLInstance
+  writeConnectionSecretsToNamespace: crossplane-system
+  resources:
+    - name: rds-instance
+      base:
+        apiVersion: rds.aws.upbound.io/v1beta1
+        kind: Instance
+        spec:
+          forProvider:
+            engine: postgres
+            storageEncrypted: true
+            publiclyAccessible: false
+            skipFinalSnapshot: true
+            autoMinorVersionUpgrade: true
+            backupRetentionPeriod: 7
+            tags:
+              ManagedBy: Crossplane
+              Platform: ComposableInfra
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.storageGB
+          toFieldPath: spec.forProvider.allocatedStorage
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.engineVersion
+          toFieldPath: spec.forProvider.engineVersion
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.instanceClass
+          toFieldPath: spec.forProvider.instanceClass
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.multiAZ
+          toFieldPath: spec.forProvider.multiAz
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.endpoint
+          toFieldPath: status.endpoint
